@@ -1,5 +1,7 @@
 import * as React from "react";
 import { connect } from "react-redux";
+import { addTodoAction, toggleTodoAction } from "../features/todos/actions";
+import { todosSelector } from "../features/todos/selectors";
 import { ADD_TODO_ACTION, UPDATE_TODO_ACTION } from "../features/todos/types";
 
 function TodoItem({ todo, onToggle }) {
@@ -26,14 +28,14 @@ function TodoList({ todos, onToggle, addTodo }) {
 
 const mapStateToProps = (state) => {
 	return {
-		todos: state.todos,
+		todos: todosSelector(state),
 	}
 };
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		addTodo: () => dispatch({ type: ADD_TODO_ACTION, payload: { title: "Added from todo list" } }),
-		onToggle: (todo) => dispatch({ type: UPDATE_TODO_ACTION, payload: { ...todo, completed: !todo.completed } })
+		addTodo: () => dispatch(addTodoAction),
+		onToggle: (todo) => dispatch(toggleTodoAction(todo))
 	}
 };
 
