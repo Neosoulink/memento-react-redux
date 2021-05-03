@@ -17,7 +17,6 @@ const initialState = [
 
 // REDUCER
 export default function TodoReducer(state = initialState, action) {
-	console.log(action);
 	switch (action.type) {
 		case ADD_TODO_ACTION:
 			return [...state, { id: ++id, completed: false, title: 'Unknown', ...action.payload }]

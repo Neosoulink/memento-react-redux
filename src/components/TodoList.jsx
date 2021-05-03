@@ -1,8 +1,8 @@
 import * as React from "react";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+//import { connect } from "react-redux";
 import { addTodoAction, toggleTodoAction } from "../features/todos/actions";
 import { todosSelector } from "../features/todos/selectors";
-import { ADD_TODO_ACTION, UPDATE_TODO_ACTION } from "../features/todos/types";
 
 function TodoItem({ todo, onToggle }) {
 	return <li>
@@ -13,7 +13,20 @@ function TodoItem({ todo, onToggle }) {
 	</li>
 }
 
-function TodoList({ todos, onToggle, addTodo }) {
+export function TodoList(/*{  todos, onToggle, addTodo  }*/) {
+	const todos = useSelector(todosSelector);
+
+	const dispatch = useDispatch();
+
+	const addTodo = React.useCallback(() => {
+		dispatch(addTodoAction())
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+	const onToggle = React.useCallback((todo) => {
+		dispatch(toggleTodoAction(todo))
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
 	return <>
 		<legend>TODO LIST</legend>
 		<ul style={{
@@ -26,17 +39,17 @@ function TodoList({ todos, onToggle, addTodo }) {
 	</>
 }
 
-const mapStateToProps = (state) => {
-	return {
-		todos: todosSelector(state),
-	}
-};
+//const mapStateToProps = (state) => {
+//	return {
+//		todos: todosSelector(state),
+//	}
+//};
 
-const mapDispatchToProps = (dispatch) => {
-	return {
-		addTodo: () => dispatch(addTodoAction),
-		onToggle: (todo) => dispatch(toggleTodoAction(todo))
-	}
-};
+//const mapDispatchToProps = (dispatch) => {
+//	return {
+//		addTodo: () => dispatch(addTodoAction),
+//		onToggle: (todo) => dispatch(toggleTodoAction(todo))
+//	}
+//};
 
-export default connect(mapStateToProps, mapDispatchToProps)(TodoList);
+//export default connect(mapStateToProps, mapDispatchToProps)(TodoList);
