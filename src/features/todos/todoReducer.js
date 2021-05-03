@@ -1,4 +1,4 @@
-import { ADD_TODO_ACTION, UPDATE_TODO_ACTION } from "./types";
+import { ADD_TODO_ACTION, DELETE_TODO_ACTION, UPDATE_TODO_ACTION } from "./types";
 
 // STATE
 let id = 2;
@@ -26,6 +26,9 @@ export default function TodoReducer(state = initialState, action) {
 				if (todo.id === action.payload.id) return { ...todo, ...action.payload }
 				return todo;
 			})
+
+		case DELETE_TODO_ACTION:
+			return state.filter(todo => todo.id !== action.payload);
 
 		default:
 			return state;
