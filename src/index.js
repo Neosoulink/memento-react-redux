@@ -1,7 +1,8 @@
 //import React from 'react';
+import * as serviceWorker from './serviceWorker';
 
 // TODO REDUX
-//import { combineReducers } from "redux";
+import { createStore, combineReducers } from "redux";
 
 console.log("TODO REDUX REVISION");
 
@@ -34,19 +35,23 @@ function TodoReducer(state = initialState, action) {
 	}
 }
 
+const store = createStore(combineReducers({
+	todo: TodoReducer,
+	filter: (state = 0, action) => state
+}), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+
 // DEBUGGING
-const state = TodoReducer(undefined, {});
-const newState = TodoReducer(undefined, { type: ADD_TODO_ACTION, payload: { title: "Demo" } })
-console.log(state, newState);
+console.log(store.getState());
+store.subscribe(() => console.log(store.getState()));
 
-
+store.dispatch({ type: ADD_TODO_ACTION, payload: { title: "Demo dispatch" } })
+store.dispatch({ type: ADD_TODO_ACTION, payload: { title: "Demo dispatch" } })
 
 //import ReactDOM from 'react-dom';
 //import './index.css';
 //import App from './App';
 //import { store } from './app/store';
 //import { Provider } from 'react-redux';
-//import * as serviceWorker from './serviceWorker';
 
 //ReactDOM.render(
 //  <React.StrictMode>
@@ -60,4 +65,4 @@ console.log(state, newState);
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
-//serviceWorker.unregister();
+serviceWorker.unregister();
