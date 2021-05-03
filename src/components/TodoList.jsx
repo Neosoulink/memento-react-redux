@@ -2,7 +2,7 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 //import { connect } from "react-redux";
 import { addTodoAction, toggleTodoAction, deleteTodoAction } from "../features/todos/actions";
-import { todosSelector } from "../features/todos/selectors";
+import { filteredTodosSelector } from "../features/todos/selectors";
 
 function TodoItem({ todo, onToggle, onDelete }) {
 	return <li>
@@ -27,7 +27,7 @@ export function TodoList({ todos, onToggle, addTodo, onDelete }) {
 }
 
 export function TodoListStore() {
-	const todos = useSelector(todosSelector);
+	const todos = useSelector(filteredTodosSelector);
 
 	const dispatch = useDispatch();
 
