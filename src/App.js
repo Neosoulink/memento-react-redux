@@ -4,6 +4,7 @@ import logo from './logo.svg';
 import './App.css';
 import { TodoListStore } from './components/TodoList';
 import { TodoFilterStore } from './components/TodoFilter';
+import { FormTodo } from './components/FormTodo';
 
 function App() {
 	return (
@@ -13,6 +14,7 @@ function App() {
 				{/*<Counter />*/}
 				<TodoListStore />
 				<TodoFilterStore />
+				<FormTodo />
 			</header>
 		</div>
 	);

@@ -22,7 +22,7 @@ export function TodoList({ todos, onToggle, addTodo, onDelete }) {
 			{todos.map(todo => <TodoItem todo={todo} onToggle={onToggle} onDelete={onDelete} key={todo.id} />)}
 		</ul>
 
-		<button onClick={addTodo}>Add todo</button>
+		<button onClick={addTodo}>Add default todo</button>
 	</>
 }
 

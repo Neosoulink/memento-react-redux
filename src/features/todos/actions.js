@@ -1,8 +1,8 @@
 import { ADD_TODO_ACTION, DELETE_TODO_ACTION, UPDATE_FILTER_ACTION, UPDATE_TODO_ACTION } from "./types";
 
 // TODO LIST
-export const addTodoAction = () => {
-	return { type: ADD_TODO_ACTION, payload: { title: "Added from todo list" } }
+export const addTodoAction = (newTodo) => {
+	return { type: ADD_TODO_ACTION, payload: { title: "Added from todo list", ...newTodo } }
 }
 
 export const toggleTodoAction = (todo) => {
